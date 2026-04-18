@@ -1,0 +1,39 @@
+#!/bin/bash
+# Pre-commit hook that checks C# code formatting
+
+# Get the directory where this script is located
+HOOK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$HOOK_DIR")"
+
+cd "$PROJECT_ROOT" || exit 1
+
+# Check if dotnet is available
+if ! command -v dotnet &> /dev/null; then
+    echo "Warning: dotnet not found, skipping code format check"
+    exit 0
+fi
+
+# Check if there are any C# files to format
+CS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.cs$' || true)
+
+if [ -z "$CS_FILES" ]; then
+    exit 0
+fi
+
+# Check if the solution file exists
+if [ ! -f "HybridArms.sln" ]; then
+    echo "Warning: Solution file not found, skipping code format check"
+    exit 0
+fi
+
+# Run dotnet format check
+echo "Checking C# code format..."
+if ! dotnet format --verify-no-changes --no-restore 2>/dev/null; then
+    echo ""
+    echo "ERROR: Code format check failed!"
+    echo "Please run 'dotnet format' and stage the changes."
+    echo ""
+    exit 1
+fi
+
+exit 0
