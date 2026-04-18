@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ikhrmffpsjp1"]
 
-[ext_resource type="Script" uid="uid://bnni2543rq8wl" path="res://src/gameplay/controller/entities/PlayerControl.cs" id="1_o7et6"]
+[ext_resource type="Script" path="res://src/HybridArms/Gameplay/Characters/Player/Player.cs" id="1_o7et6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7et6"]
 size = Vector2(32, 100)
