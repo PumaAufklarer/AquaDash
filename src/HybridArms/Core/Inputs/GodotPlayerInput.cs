@@ -1,6 +1,6 @@
 using Godot;
 
-namespace HybridArms.Core.Input;
+namespace HybridArms.Core.Inputs;
 
 public partial class GodotPlayerInput : RefCounted, IPlayerInput
 {

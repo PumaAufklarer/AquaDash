@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Godot;
-using HybridArms.Core.Input;
+using HybridArms.Core.Inputs;
 using HybridArms.Gameplay.Characters.Player.Components;
 using HybridArms.Utils;
 
@@ -8,7 +8,7 @@ namespace HybridArms.Gameplay.Characters.Player;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] public PlayerConfig? Config { get; set; }
+    [Export] public PlayerConfig Config { get; set; } = new PlayerConfig();
 
     private IPlayerInput _input = null!;
     private PlayerState _state = null!;
@@ -18,7 +18,6 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        Config ??= new PlayerConfig();
         _input = new GodotPlayerInput();
         _state = new PlayerState(
             new HorizontalState(0f, 0f),

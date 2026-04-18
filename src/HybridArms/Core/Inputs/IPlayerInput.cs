@@ -1,4 +1,4 @@
-namespace HybridArms.Core.Input;
+namespace HybridArms.Core.Inputs;
 
 public interface IPlayerInput
 {
