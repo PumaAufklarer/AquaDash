@@ -1,0 +1,32 @@
+#!/bin/bash
+# Git hook to provide commit message template
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Skip if message already provided
+if [ "$COMMIT_SOURCE" = "message" ] || [ "$COMMIT_SOURCE" = "commit" ]; then
+    exit 0
+fi
+
+# Check if we're on an issue branch (e.g., feature/123-description)
+BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null)
+ISSUE_ID=""
+
+if [[ "$BRANCH_NAME" =~ ^(feature|fix|refactor)/([0-9]+)- ]]; then
+    ISSUE_ID="${BASH_REMATCH[2]}"
+fi
+
+# Write template
+cat > "$COMMIT_MSG_FILE" <<EOF
+# <type>(<scope>): <description> (#<issue-id>)
+#
+# Types: feat, fix, docs, style, refactor, test, chore
+#
+# Example: feat(gameplay): add double jump (#42)
+#
+EOF
+
+if [ -n "$ISSUE_ID" ]; then
+    echo "# Detected issue #$ISSUE_ID from branch name" >> "$COMMIT_MSG_FILE"
+fi

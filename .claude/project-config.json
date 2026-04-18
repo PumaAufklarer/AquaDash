@@ -1,0 +1,9 @@
+{
+  "issueLabels": {
+    "types": ["type:bug", "type:feature", "type:refactor", "type:docs", "type:question"],
+    "priority": ["priority:high", "priority:medium", "priority:low"],
+    "areas": ["area:gameplay", "area:ui", "area:ci", "area:assets", "area:other"]
+  },
+  "commitTypes": ["feat", "fix", "docs", "style", "refactor", "test", "chore"],
+  "scopes": ["gameplay", "ui", "ci", "assets", "docs"]
+}
