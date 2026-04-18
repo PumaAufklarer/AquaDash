@@ -52,4 +52,4 @@ jobs:
         run: dotnet restore HybridArms.sln
 
       - name: Build
-        run: dotnet build HybridArms.sln --no-restore --configuration Release
+        run: dotnet build HybridArms.sln --no-restore --configuration ExportRelease
