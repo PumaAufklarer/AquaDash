@@ -1,6 +1,6 @@
+using Godot;
 using System;
 using System.Collections.Generic;
-using Godot;
 
 public partial class PlayerControl : CharacterBody2D
 {
@@ -168,4 +168,3 @@ public partial class AirState : PlayerState
         player.Velocity = new Vector2(player.Velocity.X, currentVerticalSpeed);
     }
 }
-
