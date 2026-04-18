@@ -1,0 +1,24 @@
+#!/bin/bash
+# Git hook to validate Conventional Commits format with issue ID
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(head -1 "$COMMIT_MSG_FILE")
+
+# Conventional Commits pattern with issue ID
+# Format: type(scope): description (#123)
+PATTERN="^(feat|fix|docs|style|refactor|test|chore)(\([a-z0-9._-]+\))?: .+ \(#[0-9]+\)"
+
+if ! grep -qE "$PATTERN" <<< "$COMMIT_MSG"; then
+    echo ""
+    echo "ERROR: Commit message does not follow Conventional Commits format!"
+    echo ""
+    echo "Required format: <type>(<scope>): <description> (#<issue-id>)"
+    echo ""
+    echo "Allowed types: feat, fix, docs, style, refactor, test, chore"
+    echo ""
+    echo "Example: feat(gameplay): add double jump (#42)"
+    echo ""
+    exit 1
+fi
+
+exit 0
