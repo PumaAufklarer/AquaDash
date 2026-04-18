@@ -17,12 +17,12 @@ namespace PBStudio
 
         private HorizontalMoveState UpdateHorizontalMoveState()
         {
-
+            return _horizontalMoveState;
         }
 
         private VerticalMoveState UpdateVerticalMoveState()
         {
-
+            return _verticalMoveState;
         }
     }
 }
